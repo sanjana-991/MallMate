@@ -1,0 +1,451 @@
+{
+  "mall": {
+    "name": "Promenade Mall",
+    "description": "Sample fictional mall — not a verified real-world map. For demonstration purposes only.",
+    "svg_width": 800,
+    "svg_height": 620,
+    "floors": {
+      "0": "Ground Floor",
+      "1": "First Floor",
+      "2": "Second Floor"
+    }
+  },
+  "locations": [
+    {
+      "id": "L01",
+      "name": "Main Entrance",
+      "category": "entrance",
+      "floor": 0,
+      "aliases": ["north entrance", "main door", "front door", "front entrance", "main gate", "north gate"],
+      "coordinates": {"x": 400, "y": 50},
+      "description": "Primary north-facing entrance to the mall",
+      "tags": ["entrance", "entry", "exit", "door"]
+    },
+    {
+      "id": "L02",
+      "name": "South Entrance",
+      "category": "entrance",
+      "floor": 0,
+      "aliases": ["south door", "south gate", "rear entrance", "back entrance", "back door"],
+      "coordinates": {"x": 400, "y": 570},
+      "description": "South-facing secondary entrance",
+      "tags": ["entrance", "entry", "exit", "door"]
+    },
+    {
+      "id": "L03",
+      "name": "Information Desk",
+      "category": "landmark",
+      "floor": 0,
+      "aliases": ["info desk", "info", "help desk", "reception", "customer service", "directory", "information"],
+      "coordinates": {"x": 400, "y": 140},
+      "description": "Central information and customer assistance desk",
+      "tags": ["help", "information", "reception", "landmark"]
+    },
+    {
+      "id": "L04",
+      "name": "ATM",
+      "category": "atm",
+      "floor": 0,
+      "aliases": ["cash machine", "cash point", "bank machine", "atm machine"],
+      "coordinates": {"x": 120, "y": 240},
+      "description": "Automated teller machine",
+      "tags": ["atm", "cash", "money", "bank", "withdraw"]
+    },
+    {
+      "id": "L05",
+      "name": "Washroom (Ground)",
+      "category": "washroom",
+      "floor": 0,
+      "aliases": ["toilet ground", "restroom ground", "bathroom ground", "loo ground", "wc ground", "washroom g"],
+      "coordinates": {"x": 680, "y": 240},
+      "description": "Washrooms on Ground Floor (east wing)",
+      "tags": ["washroom", "toilet", "restroom", "bathroom", "loo", "wc", "lavatory"]
+    },
+    {
+      "id": "L06",
+      "name": "Elevator (Ground)",
+      "category": "elevator",
+      "floor": 0,
+      "aliases": ["lift ground", "elevator g", "lift g"],
+      "coordinates": {"x": 720, "y": 370},
+      "description": "Elevator serving all three floors — east side",
+      "tags": ["elevator", "lift", "accessible", "wheelchair"]
+    },
+    {
+      "id": "L07",
+      "name": "Escalator (Ground)",
+      "category": "escalator",
+      "floor": 0,
+      "aliases": ["escalator g", "moving stairs ground", "travelator ground"],
+      "coordinates": {"x": 560, "y": 370},
+      "description": "Up-escalator to First Floor (centre-east)",
+      "tags": ["escalator", "moving stairs"]
+    },
+    {
+      "id": "L08",
+      "name": "Stairs (Ground)",
+      "category": "stairs",
+      "floor": 0,
+      "aliases": ["staircase ground", "steps ground", "stairs g"],
+      "coordinates": {"x": 240, "y": 370},
+      "description": "Staircase to First Floor (centre-west)",
+      "tags": ["stairs", "staircase", "steps"]
+    },
+    {
+      "id": "L09",
+      "name": "H&M",
+      "category": "retail",
+      "floor": 0,
+      "aliases": ["hm", "h and m", "h & m", "hennes", "hennes and mauritz"],
+      "coordinates": {"x": 80, "y": 370},
+      "description": "Fashion and lifestyle retail store",
+      "tags": ["clothing", "fashion", "retail", "apparel", "shop", "store"]
+    },
+    {
+      "id": "L10",
+      "name": "McDonald's",
+      "category": "food",
+      "floor": 0,
+      "aliases": ["mcdonalds", "mc donalds", "mcdonald", "mcD", "maccas", "mac donalds"],
+      "coordinates": {"x": 120, "y": 490},
+      "description": "Fast-food restaurant",
+      "tags": ["food", "fast food", "burger", "restaurant", "eat", "dining"]
+    },
+    {
+      "id": "L11",
+      "name": "Subway",
+      "category": "food",
+      "floor": 0,
+      "aliases": ["subway sandwiches", "sub way"],
+      "coordinates": {"x": 680, "y": 490},
+      "description": "Sandwich and sub restaurant",
+      "tags": ["food", "sandwich", "sub", "restaurant", "eat", "dining", "healthy"]
+    },
+    {
+      "id": "L12",
+      "name": "Corridor GN",
+      "category": "corridor",
+      "floor": 0,
+      "aliases": ["north corridor ground", "corridor ground north"],
+      "coordinates": {"x": 400, "y": 240},
+      "description": "North corridor junction — Ground Floor",
+      "tags": ["corridor", "junction", "walkway"]
+    },
+    {
+      "id": "L13",
+      "name": "Corridor GC",
+      "category": "corridor",
+      "floor": 0,
+      "aliases": ["central corridor ground", "ground floor center", "central junction ground"],
+      "coordinates": {"x": 400, "y": 370},
+      "description": "Central corridor hub — Ground Floor",
+      "tags": ["corridor", "junction", "walkway", "centre", "central"]
+    },
+    {
+      "id": "L14",
+      "name": "Corridor GS",
+      "category": "corridor",
+      "floor": 0,
+      "aliases": ["south corridor ground", "corridor ground south"],
+      "coordinates": {"x": 400, "y": 490},
+      "description": "South corridor junction — Ground Floor",
+      "tags": ["corridor", "junction", "walkway"]
+    },
+    {
+      "id": "L15",
+      "name": "Food Court",
+      "category": "food",
+      "floor": 1,
+      "aliases": ["food hall", "dining area", "eating area", "food zone", "food court first floor"],
+      "coordinates": {"x": 400, "y": 60},
+      "description": "Large multi-vendor food court with seating",
+      "tags": ["food", "food court", "dining", "eat", "restaurant", "meals", "lunch", "dinner"]
+    },
+    {
+      "id": "L16",
+      "name": "Starbucks",
+      "category": "cafe",
+      "floor": 1,
+      "aliases": ["star bucks", "starbuck", "starbuks", "starbux", "coffee starbucks", "sbux"],
+      "coordinates": {"x": 100, "y": 170},
+      "description": "International coffee chain cafe",
+      "tags": ["cafe", "coffee", "beverage", "drink", "tea", "latte"]
+    },
+    {
+      "id": "L17",
+      "name": "KFC",
+      "category": "food",
+      "floor": 1,
+      "aliases": ["kentucky fried chicken", "k f c", "kfc restaurant"],
+      "coordinates": {"x": 700, "y": 170},
+      "description": "Fried chicken fast-food restaurant",
+      "tags": ["food", "fast food", "chicken", "restaurant", "eat", "dining", "fried"]
+    },
+    {
+      "id": "L18",
+      "name": "Pizza Hut",
+      "category": "food",
+      "floor": 1,
+      "aliases": ["pizza hut restaurant", "pizzahut", "pizza", "pizza place"],
+      "coordinates": {"x": 90, "y": 330},
+      "description": "Pizza and Italian cuisine restaurant",
+      "tags": ["food", "pizza", "italian", "restaurant", "eat", "dining"]
+    },
+    {
+      "id": "L19",
+      "name": "Zara",
+      "category": "retail",
+      "floor": 1,
+      "aliases": ["zaraa", "zarra", "zara store", "zara fashion"],
+      "coordinates": {"x": 660, "y": 330},
+      "description": "International fashion retail chain",
+      "tags": ["clothing", "fashion", "retail", "apparel", "shop", "store", "women", "men"]
+    },
+    {
+      "id": "L20",
+      "name": "Marks & Spencer",
+      "category": "retail",
+      "floor": 1,
+      "aliases": ["marks and spencer", "m&s", "m & s", "marks spencer", "marks & spenser"],
+      "coordinates": {"x": 90, "y": 470},
+      "description": "Premium department store — clothing, food, home",
+      "tags": ["clothing", "fashion", "retail", "apparel", "shop", "store", "department store"]
+    },
+    {
+      "id": "L21",
+      "name": "Levi's",
+      "category": "retail",
+      "floor": 1,
+      "aliases": ["levis", "levi strauss", "levis jeans", "levi's jeans"],
+      "coordinates": {"x": 660, "y": 470},
+      "description": "Denim and casual wear retail store",
+      "tags": ["clothing", "fashion", "retail", "denim", "jeans", "shop", "store"]
+    },
+    {
+      "id": "L22",
+      "name": "Washroom (First)",
+      "category": "washroom",
+      "floor": 1,
+      "aliases": ["toilet first", "restroom first", "bathroom first", "loo first", "wc first", "washroom 1"],
+      "coordinates": {"x": 400, "y": 540},
+      "description": "Washrooms on First Floor (south end)",
+      "tags": ["washroom", "toilet", "restroom", "bathroom", "loo", "wc", "lavatory"]
+    },
+    {
+      "id": "L23",
+      "name": "Elevator (First)",
+      "category": "elevator",
+      "floor": 1,
+      "aliases": ["lift first", "elevator 1", "lift 1"],
+      "coordinates": {"x": 730, "y": 330},
+      "description": "Elevator serving all three floors — east side, First Floor",
+      "tags": ["elevator", "lift", "accessible", "wheelchair"]
+    },
+    {
+      "id": "L24",
+      "name": "Escalator (First)",
+      "category": "escalator",
+      "floor": 1,
+      "aliases": ["escalator 1", "escalator first floor"],
+      "coordinates": {"x": 540, "y": 330},
+      "description": "Escalator connecting Ground and Second floors — First Floor level",
+      "tags": ["escalator", "moving stairs"]
+    },
+    {
+      "id": "L25",
+      "name": "Stairs (First)",
+      "category": "stairs",
+      "floor": 1,
+      "aliases": ["staircase first", "steps first", "stairs 1"],
+      "coordinates": {"x": 250, "y": 330},
+      "description": "Staircase connecting Ground and Second floors — First Floor level",
+      "tags": ["stairs", "staircase", "steps"]
+    },
+    {
+      "id": "L26",
+      "name": "Corridor 1N",
+      "category": "corridor",
+      "floor": 1,
+      "aliases": ["north corridor first", "corridor first north"],
+      "coordinates": {"x": 400, "y": 170},
+      "description": "North corridor junction — First Floor",
+      "tags": ["corridor", "junction", "walkway"]
+    },
+    {
+      "id": "L27",
+      "name": "Corridor 1C",
+      "category": "corridor",
+      "floor": 1,
+      "aliases": ["central corridor first", "first floor center", "central junction first"],
+      "coordinates": {"x": 400, "y": 330},
+      "description": "Central corridor hub — First Floor",
+      "tags": ["corridor", "junction", "walkway", "centre", "central"]
+    },
+    {
+      "id": "L28",
+      "name": "Corridor 1S",
+      "category": "corridor",
+      "floor": 1,
+      "aliases": ["south corridor first", "corridor first south"],
+      "coordinates": {"x": 400, "y": 470},
+      "description": "South corridor junction — First Floor",
+      "tags": ["corridor", "junction", "walkway"]
+    },
+    {
+      "id": "L29",
+      "name": "Cinema",
+      "category": "cinema",
+      "floor": 2,
+      "aliases": ["movie theatre", "movies", "movie theater", "film", "cinemax", "multiplex", "theater", "theatre"],
+      "coordinates": {"x": 400, "y": 60},
+      "description": "6-screen multiplex cinema",
+      "tags": ["cinema", "movie", "film", "entertainment", "theatre", "theater", "screen"]
+    },
+    {
+      "id": "L30",
+      "name": "Bowling Alley",
+      "category": "leisure",
+      "floor": 2,
+      "aliases": ["bowling", "bowl", "bowling center", "bowling lane", "bowling centre"],
+      "coordinates": {"x": 90, "y": 320},
+      "description": "10-lane bowling alley",
+      "tags": ["bowling", "leisure", "entertainment", "sports", "fun", "activity"]
+    },
+    {
+      "id": "L31",
+      "name": "Game Zone",
+      "category": "leisure",
+      "floor": 2,
+      "aliases": ["gaming zone", "arcade", "game arcade", "gaming", "amusement", "game center", "game centre"],
+      "coordinates": {"x": 680, "y": 190},
+      "description": "Video games and amusement arcade",
+      "tags": ["gaming", "arcade", "leisure", "entertainment", "games", "fun", "activity"]
+    },
+    {
+      "id": "L32",
+      "name": "Nike",
+      "category": "retail",
+      "floor": 2,
+      "aliases": ["nike store", "nike shop", "nike sports"],
+      "coordinates": {"x": 90, "y": 460},
+      "description": "Nike sportswear and footwear store",
+      "tags": ["sports", "footwear", "shoes", "retail", "shop", "store", "clothing", "sportswear"]
+    },
+    {
+      "id": "L33",
+      "name": "Adidas",
+      "category": "retail",
+      "floor": 2,
+      "aliases": ["adidas store", "adidas shop", "adidas sports", "addidas"],
+      "coordinates": {"x": 680, "y": 460},
+      "description": "Adidas sportswear and footwear store",
+      "tags": ["sports", "footwear", "shoes", "retail", "shop", "store", "clothing", "sportswear"]
+    },
+    {
+      "id": "L34",
+      "name": "Washroom (Second)",
+      "category": "washroom",
+      "floor": 2,
+      "aliases": ["toilet second", "restroom second", "bathroom second", "loo second", "wc second", "washroom 2"],
+      "coordinates": {"x": 400, "y": 460},
+      "description": "Washrooms on Second Floor (south-centre)",
+      "tags": ["washroom", "toilet", "restroom", "bathroom", "loo", "wc", "lavatory"]
+    },
+    {
+      "id": "L35",
+      "name": "Elevator (Second)",
+      "category": "elevator",
+      "floor": 2,
+      "aliases": ["lift second", "elevator 2", "lift 2"],
+      "coordinates": {"x": 730, "y": 320},
+      "description": "Elevator serving all three floors — east side, Second Floor",
+      "tags": ["elevator", "lift", "accessible", "wheelchair"]
+    },
+    {
+      "id": "L36",
+      "name": "Escalator (Second)",
+      "category": "escalator",
+      "floor": 2,
+      "aliases": ["escalator 2", "escalator second floor"],
+      "coordinates": {"x": 540, "y": 320},
+      "description": "Escalator connecting First and Second floors — Second Floor level",
+      "tags": ["escalator", "moving stairs"]
+    },
+    {
+      "id": "L37",
+      "name": "Stairs (Second)",
+      "category": "stairs",
+      "floor": 2,
+      "aliases": ["staircase second", "steps second", "stairs 2"],
+      "coordinates": {"x": 250, "y": 320},
+      "description": "Staircase connecting First and Second floors — Second Floor level",
+      "tags": ["stairs", "staircase", "steps"]
+    },
+    {
+      "id": "L38",
+      "name": "Corridor 2N",
+      "category": "corridor",
+      "floor": 2,
+      "aliases": ["north corridor second", "corridor second north"],
+      "coordinates": {"x": 400, "y": 180},
+      "description": "North corridor junction — Second Floor",
+      "tags": ["corridor", "junction", "walkway"]
+    },
+    {
+      "id": "L39",
+      "name": "Corridor 2C",
+      "category": "corridor",
+      "floor": 2,
+      "aliases": ["central corridor second", "second floor center", "central junction second"],
+      "coordinates": {"x": 400, "y": 320},
+      "description": "Central corridor hub — Second Floor",
+      "tags": ["corridor", "junction", "walkway", "centre", "central"]
+    }
+  ],
+  "connections": [
+    {"from": "L01", "to": "L03", "distance": 90.0,  "type": "corridor",  "bidirectional": true},
+    {"from": "L03", "to": "L12", "distance": 100.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L12", "to": "L04", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L12", "to": "L05", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L12", "to": "L13", "distance": 130.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L13", "to": "L09", "distance": 320.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L13", "to": "L08", "distance": 160.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L13", "to": "L07", "distance": 160.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L13", "to": "L06", "distance": 320.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L13", "to": "L14", "distance": 120.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L14", "to": "L10", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L14", "to": "L11", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L14", "to": "L02", "distance": 80.0,  "type": "corridor",  "bidirectional": true},
+    {"from": "L07", "to": "L24", "distance": 50.0,  "type": "escalator", "bidirectional": true},
+    {"from": "L08", "to": "L25", "distance": 40.0,  "type": "stairs",    "bidirectional": true},
+    {"from": "L06", "to": "L23", "distance": 30.0,  "type": "elevator",  "bidirectional": true},
+    {"from": "L26", "to": "L16", "distance": 300.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L26", "to": "L17", "distance": 300.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L26", "to": "L15", "distance": 110.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L26", "to": "L27", "distance": 160.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L18", "distance": 310.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L19", "distance": 260.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L23", "distance": 330.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L24", "distance": 140.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L25", "distance": 150.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L27", "to": "L28", "distance": 140.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L28", "to": "L20", "distance": 310.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L28", "to": "L21", "distance": 260.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L28", "to": "L22", "distance": 70.0,  "type": "corridor",  "bidirectional": true},
+    {"from": "L24", "to": "L36", "distance": 50.0,  "type": "escalator", "bidirectional": true},
+    {"from": "L25", "to": "L37", "distance": 40.0,  "type": "stairs",    "bidirectional": true},
+    {"from": "L23", "to": "L35", "distance": 30.0,  "type": "elevator",  "bidirectional": true},
+    {"from": "L38", "to": "L29", "distance": 120.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L38", "to": "L39", "distance": 140.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L30", "distance": 310.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L31", "distance": 310.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L37", "distance": 150.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L36", "distance": 140.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L35", "distance": 330.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L39", "to": "L34", "distance": 140.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L34", "to": "L32", "distance": 310.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L34", "to": "L33", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L38", "to": "L31", "distance": 280.0, "type": "corridor",  "bidirectional": true},
+    {"from": "L31", "to": "L35", "distance": 140.0, "type": "corridor",  "bidirectional": true}
+  ]
+}
