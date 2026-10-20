@@ -14,7 +14,6 @@ The UI connects the NLP and navigation modules into a full user-facing experienc
 """
 
 import json
-import os
 from pathlib import Path
 
 import streamlit as st
@@ -39,69 +38,365 @@ from map_renderer import render_map
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Global CSS
-# ─────────────────────────────────────────────────────────────────────────────
+
 st.markdown("""
 <style>
-/* ── Global font ── */
-html, body, [class*="css"] { font-family: 'Segoe UI', sans-serif; }
+@import url('https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap');
 
-/* ── Header ── */
+:root {
+  --mm-ink: #14243a;
+  --mm-muted: #66758b;
+  --mm-blue: #2563eb;
+  --mm-blue-dark: #1d4ed8;
+  --mm-border: #e5ebf3;
+  --mm-surface: #ffffff;
+  --mm-bg: #f5f7fb;
+}
+
+html, body, [class*="css"], .stApp {
+  font-family: 'DM Sans', sans-serif;
+}
+
+.stApp {
+  background: var(--mm-bg);
+  color: var(--mm-ink);
+}
+
+.block-container {
+  max-width: 1500px;
+  padding-top: 1.5rem;
+  padding-bottom: 2.5rem;
+}
+
+[data-testid="stHeader"] {
+  background: rgba(245,247,251,.85);
+}
+
+[data-testid="stSidebar"] {
+  background: #fff;
+  border-right: 1px solid var(--mm-border);
+}
+
+[data-testid="stSidebar"] > div:first-child {
+  padding-top: 1.2rem;
+}
+
+[data-testid="stSidebar"] [data-testid="stMarkdownContainer"] p {
+  color: var(--mm-muted);
+}
+
+[data-testid="stWidgetLabel"] {
+  color: #40516a;
+  font-weight: 600;
+}
+
+/* Text input and location search: improve readability */
+.stTextInput input,
+[data-testid="stTextInput"] input {
+  background-color: #ffffff !important;
+  color: #14243a !important;
+  -webkit-text-fill-color: #14243a !important;
+  caret-color: #2563eb !important;
+  border: 1px solid #dce4ef !important;
+  border-radius: 12px !important;
+  min-height: 44px;
+  opacity: 1 !important;
+}
+
+/* Placeholder text */
+.stTextInput input::placeholder,
+[data-testid="stTextInput"] input::placeholder {
+  color: #718096 !important;
+  -webkit-text-fill-color: #718096 !important;
+  opacity: 1 !important;
+}
+
+/* Input while focused */
+.stTextInput input:focus,
+[data-testid="stTextInput"] input:focus {
+  background-color: #ffffff !important;
+  color: #14243a !important;
+  -webkit-text-fill-color: #14243a !important;
+  border-color: var(--mm-blue) !important;
+  box-shadow: 0 0 0 3px rgba(37,99,235,.12) !important;
+  outline: none;
+}
+
+/* Dropdown styling */
+.stSelectbox [data-baseweb="select"] > div {
+  border: 1px solid #dce4ef;
+  border-radius: 12px;
+  background: #fff;
+  min-height: 44px;
+}
+
+.stButton > button {
+  border-radius: 11px;
+  border: 1px solid #dce4ef;
+  font-weight: 600;
+  min-height: 42px;
+  transition: all .18s ease;
+  box-shadow: 0 1px 2px rgba(20,36,58,.03);
+}
+
+.stButton > button:hover {
+  border-color: #93b4ff;
+  color: var(--mm-blue-dark);
+  transform: translateY(-1px);
+}
+
+.stButton > button[kind="primary"] {
+  background: var(--mm-blue);
+  border-color: var(--mm-blue);
+  color: #fff;
+}
+
+.stButton > button[kind="primary"]:hover {
+  background: var(--mm-blue-dark);
+  color: #fff;
+}
+
+.stDivider {
+  margin: 1.1rem 0;
+  border-color: var(--mm-border);
+}
+
+.stAlert {
+  border-radius: 12px;
+}
+
+.stExpander {
+  background: #fff;
+  border: 1px solid var(--mm-border);
+  border-radius: 12px;
+}
+
+/* Main hero */
 .mm-header {
-    background: linear-gradient(135deg, #1565C0 0%, #283593 100%);
-    border-radius: 14px;
-    padding: 22px 28px 16px;
-    margin-bottom: 18px;
-    color: white;
+  position: relative;
+  overflow: hidden;
+  color: white;
+  background: linear-gradient(120deg, #142b52 0%, #1d4ed8 58%, #3b82f6 100%);
+  border-radius: 22px;
+  padding: 27px 30px 25px;
+  margin: 0 0 22px;
+  box-shadow: 0 12px 30px rgba(37,99,235,.15);
 }
-.mm-header h1 { margin: 0; font-size: 2.1rem; letter-spacing: -0.5px; }
-.mm-header p  { margin: 4px 0 0; font-size: 0.95rem; opacity: 0.85; }
 
-/* ── Cards ── */
+.mm-header:after {
+  content: '';
+  position: absolute;
+  width: 230px;
+  height: 230px;
+  border: 1px solid rgba(255,255,255,.15);
+  border-radius: 50%;
+  right: -45px;
+  top: -105px;
+  box-shadow: 0 0 0 28px rgba(255,255,255,.035),
+              0 0 0 58px rgba(255,255,255,.025);
+}
+
+.mm-eyebrow {
+  font-size: .72rem;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  font-weight: 700;
+  opacity: .78;
+  margin-bottom: 8px;
+}
+
+.mm-header h1 {
+  margin: 0;
+  font-family: 'Manrope', sans-serif;
+  font-size: clamp(1.8rem, 3vw, 2.45rem);
+  line-height: 1.2;
+  letter-spacing: -.8px;
+  font-weight: 800;
+}
+
+.mm-header p {
+  margin: 9px 0 0;
+  font-size: .98rem;
+  opacity: .86;
+}
+
+.mm-pill {
+  display: inline-block;
+  padding: 5px 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.14);
+  border: 1px solid rgba(255,255,255,.22);
+  font-size: .76rem;
+  margin-bottom: 12px;
+}
+
+/* Content cards */
 .mm-card {
-    background: #ffffff;
-    border-radius: 10px;
-    padding: 16px 18px;
-    margin-bottom: 12px;
-    box-shadow: 0 1px 4px rgba(0,0,0,0.08);
-    border-left: 4px solid #1565C0;
+  background: var(--mm-surface);
+  border: 1px solid var(--mm-border);
+  border-radius: 16px;
+  padding: 17px 19px;
+  margin-bottom: 13px;
+  box-shadow: 0 4px 14px rgba(23,43,77,.035);
+  border-left: 4px solid var(--mm-blue);
+  color: var(--mm-ink);
 }
-.mm-card.success { border-left-color: #2E7D32; }
-.mm-card.warning { border-left-color: #F57C00; }
-.mm-card.error   { border-left-color: #B71C1C; }
-.mm-card.info    { border-left-color: #0277BD; }
 
-/* ── Route summary ── */
-.route-meta { display: flex; gap: 24px; flex-wrap: wrap; margin-bottom: 10px; }
-.route-stat { text-align: center; }
-.route-stat .val { font-size: 1.5rem; font-weight: 700; color: #1565C0; }
-.route-stat .lbl { font-size: 0.75rem; color: #78909C; text-transform: uppercase; }
+.mm-card.success {
+  border-left-color: #16a34a;
+}
 
-/* ── Direction steps ── */
+.mm-card.warning {
+  border-left-color: #f59e0b;
+}
+
+.mm-card.error {
+  border-left-color: #ef4444;
+}
+
+.mm-card.info {
+  border-left-color: #3b82f6;
+}
+
+.mm-section-title {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--mm-ink);
+  margin: 5px 0 12px;
+}
+
+.mm-muted {
+  color: var(--mm-muted);
+}
+
+/* Route stats */
+.route-meta {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  margin: 14px 0;
+}
+
+.route-stat {
+  text-align: left;
+  background: #f5f8ff;
+  border: 1px solid #e5edff;
+  border-radius: 12px;
+  padding: 12px;
+}
+
+.route-stat .val {
+  font-family: 'Manrope', sans-serif;
+  font-size: 1.45rem;
+  line-height: 1.25;
+  font-weight: 800;
+  color: var(--mm-blue-dark);
+}
+
+.route-stat .lbl {
+  font-size: .68rem;
+  color: var(--mm-muted);
+  text-transform: uppercase;
+  letter-spacing: .6px;
+  margin-top: 4px;
+}
+
+/* Direction steps */
 .dir-step {
-    display: flex; align-items: flex-start; gap: 10px;
-    padding: 7px 0; border-bottom: 1px solid #ECEFF1;
+  display: flex;
+  align-items: flex-start;
+  gap: 11px;
+  padding: 10px 11px;
+  border: 1px solid #edf0f6;
+  margin-bottom: 7px;
+  background: #fff;
 }
-.dir-step:last-child { border-bottom: none; }
+
+.dir-step:last-child {
+  border-bottom: 1px solid #edf0f6;
+}
+
 .step-num {
-    min-width: 24px; height: 24px; border-radius: 50%;
-    background: #1565C0; color: white;
-    font-size: 11px; font-weight: 700;
-    display: flex; align-items: center; justify-content: center;
+  flex: 0 0 26px;
+  width: 26px;
+  height: 26px;
+  border-radius: 9px;
+  background: #eaf1ff;
+  color: #1d4ed8;
+  font-size: 11px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
-.step-text { font-size: 0.9rem; color: #37474F; line-height: 1.5; }
 
-/* ── Suggestion buttons ── */
-.suggestion-label { font-size: 0.85rem; color: #546E7A; margin-bottom: 8px; }
+.step-text {
+  font-size: .9rem;
+  color: #34445b;
+  line-height: 1.55;
+}
 
-/* ── Floor tab buttons ── */
-div[data-testid="column"] button { width: 100%; }
+.suggestion-label {
+  font-size: .82rem;
+  color: var(--mm-muted);
+  font-weight: 700;
+  margin: 10px 0 8px;
+}
 
-/* ── Sidebar labels ── */
-.sidebar-section { font-size: 0.75rem; font-weight: 700;
-    color: #78909C; text-transform: uppercase;
-    letter-spacing: 0.8px; margin: 12px 0 4px; }
+.sidebar-section {
+  font-size: .72rem;
+  font-weight: 800;
+  color: #7b899d;
+  text-transform: uppercase;
+  letter-spacing: 1.1px;
+  margin: 12px 0 7px;
+}
+
+.mm-map-shell {
+  background: #fff;
+  border: 1px solid var(--mm-border);
+  border-radius: 16px;
+  padding: 8px;
+  box-shadow: 0 4px 14px rgba(23,43,77,.035);
+}
+
+[data-testid="column"] {
+  min-width: 0;
+}
+
+iframe[title="streamlit_components.html"] {
+  border: 1px solid var(--mm-border);
+  border-radius: 14px;
+  background: #fff;
+}
+
+/* Responsive layout */
+@media (max-width: 760px) {
+  .block-container {
+    padding: 1rem .8rem 2rem;
+  }
+
+  .mm-header {
+    padding: 22px 20px;
+    border-radius: 17px;
+  }
+
+  .route-meta {
+    gap: 6px;
+  }
+
+  .route-stat {
+    padding: 9px;
+  }
+
+  .route-stat .val {
+    font-size: 1.2rem;
+  }
+}
 </style>
 """, unsafe_allow_html=True)
+
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Data loading (cached)
@@ -191,13 +486,13 @@ def reset_search():
 # ─────────────────────────────────────────────────────────────────────────────
 with st.sidebar:
     st.markdown("""
-    <div style="padding:10px 0 4px;">
-        <span style="font-size:1.5rem;">🗺️</span>
-        <span style="font-size:1.1rem; font-weight:700; color:#1565C0; margin-left:6px;">
-        MallMate AI</span>
+    <div style="display:flex;align-items:center;gap:11px;padding:8px 0 12px;">
+      <div style="width:42px;height:42px;display:flex;align-items:center;justify-content:center;background:#eaf1ff;border-radius:13px;font-size:1.35rem;">🗺️</div>
+      <div><div style="font-family:Manrope,sans-serif;font-size:1.12rem;font-weight:800;color:#14243a;">MallMate AI</div>
+      <div style="font-size:.75rem;color:#7b899d;">Smart mall navigation</div></div>
     </div>
     """, unsafe_allow_html=True)
-    st.caption("Promenade Mall — Sample Map")
+    st.caption("📍 Promenade Mall · Sample map")
     st.divider()
 
     # ── Starting location ──
@@ -281,18 +576,21 @@ with st.sidebar:
 # ── Header ──
 st.markdown("""
 <div class="mm-header">
-    <h1>🗺️ MallMate AI</h1>
-    <p>Ask naturally &nbsp;·&nbsp; Find easily &nbsp;·&nbsp; Navigate confidently</p>
+    <div class="mm-pill">✦ YOUR PERSONAL MALL GUIDE</div>
+    <div class="mm-eyebrow">Explore without getting lost</div>
+    <h1>Find your way around the mall.</h1>
+    <p>Search in your own words, discover places, and follow the best route floor by floor.</p>
 </div>
 """, unsafe_allow_html=True)
 
 # ── Search box ──
+st.markdown('<div class="mm-section-title">Where would you like to go?</div>', unsafe_allow_html=True)
 col_search, col_btn = st.columns([5, 1])
 with col_search:
     query = st.text_input(
         "Search",
         value=st.session_state.last_query,
-        placeholder="e.g. 'Where is Zara?'  ·  'Nearest washroom'  ·  'Take me to the food court'",
+        placeholder="Try: Where is Zara?  ·  Nearest washroom  ·  Take me to the food court",
         label_visibility="collapsed",
     )
 with col_btn:
@@ -378,6 +676,7 @@ with col_map:
                             st.rerun()
 
     # ── SVG Map ──
+    st.markdown('<div class="mm-section-title">Mall map <span style="font-size:.8rem;font-weight:500;color:#7b899d;">· Select a floor from the sidebar</span></div>', unsafe_allow_html=True)
     effective_route = route["path"] if route and route["found"] else None
     effective_start = st.session_state.start_id
     effective_dest = (
@@ -403,6 +702,7 @@ with col_map:
 
 
 with col_details:
+    st.markdown('<div class="mm-section-title">Your journey</div>', unsafe_allow_html=True)
     # ── Route summary card ──
     if route and route["found"]:
         steps = len(route["directions"])
@@ -512,10 +812,9 @@ with col_details:
         # ── Initial state — no query yet ──
         st.markdown("""
         <div class="mm-card info">
-            <b>🗺️ Welcome to MallMate AI</b><br/>
+            <b>👋 Welcome to MallMate AI</b><br/>
             <br/>
-            Search for any shop, restaurant, washroom, or facility
-            using natural language.<br/><br/>
+            Find shops, restaurants, washrooms, and facilities by simply asking.<br/><br/>
             <b>Example queries:</b><br/>
             • Where is Zara?<br/>
             • Take me from the entrance to the food court<br/>
@@ -534,3 +833,4 @@ with col_details:
         for cat, count in sorted(cats.items(), key=lambda x: -x[1]):
             if cat not in ("corridor",):
                 st.markdown(f"- **{cat.title()}**: {count} location(s)")
+
