@@ -676,12 +676,29 @@ with col_map:
                             st.rerun()
 
     # ── SVG Map ──
-    st.markdown('<div class="mm-section-title">Mall map <span style="font-size:.8rem;font-weight:500;color:#7b899d;">· Select a floor from the sidebar</span></div>', unsafe_allow_html=True)
-    effective_route = route["path"] if route and route["found"] else None
+    # st.markdown('<div class="mm-section-title">Mall map <span style="font-size:.8rem;font-weight:500;color:#7b899d;">· Select a floor from the sidebar</span></div>', unsafe_allow_html=True)
+    # effective_route = route["path"] if route and route["found"] else None
+    # effective_start = st.session_state.start_id
+    # effective_dest = (
+    #     (route.get("destination_id") or nlp.get("destination_id") or st.session_state.pending_destination_id)
+    #     if nlp else None
+    # )
+
+    
+
+    # ── SVG Map ──
+    st.markdown(
+        '<div class="mm-section-title">Mall map <span style="font-size:.8rem;font-weight:500;color:#7b899d;">· Select a floor from the sidebar</span></div>',
+        unsafe_allow_html=True
+    )
+
+    effective_route = route["path"] if route and route.get("found") else None
     effective_start = st.session_state.start_id
+
     effective_dest = (
-        (route.get("destination_id") or nlp.get("destination_id") or st.session_state.pending_destination_id)
-        if nlp else None
+        (route or {}).get("destination_id")
+        or (nlp or {}).get("destination_id")
+        or st.session_state.get("pending_destination_id")
     )
 
     map_html = render_map(
